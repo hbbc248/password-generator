@@ -1,5 +1,4 @@
 
-var length = 8;
 var hasLower = true;
 var hasUpper = true;
 var hasNumber = true;
@@ -9,8 +8,59 @@ var hasSymbol = true;
 var generateBtn = document.getElementById("generate");
 var passwordText = document.querySelector("#password");
 
+// Prompt Question about password legnth
+var lengthImput = function () {
+  var askLength = window.prompt("How long do you want the password? Please enter a number between 8 and 128.");
+  if ((askLength >= 8) && (askLength <=128)) {
+    console.log("Password length is " + askLength);
+    return (askLength);
+  }
+  else {
+    window.alert("You enter and invalid password length. Password length must be a number between 8 and 128. Please try again.");
+    return lengthImput();
+  }
+};
+// Prompt for character types to include in password
+
+var typesImput = function() {
+  window.alert("Character types selection. Please select at least one character type to be included in your password.");
+  hasLower = window.confirm("Will you like to include Lowercase characters in your password?");
+  hasUpper = window.confirm("Will you like to include Uppercase characters in your password?");
+  hasNumber = window.confirm("Will you like to include Numbers in your password?");
+  hasSymbol = window.confirm("Will you like to include Special characters (!#$%&()*+,-./:;<=>?@[\]_{|}~) in your password?"); 
+  var typesCount = hasLower + hasUpper + hasNumber + hasSymbol;
+  if (typesCount < 1) {
+    window.alert("You did not select any type of character for your password. Please try again!");
+    return typesImput();
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Generate event listenner
 generateBtn.addEventListener("click", () => {
+  // determine password length calling function about password length
+  var length = lengthImput();
+  // call 
+  typesImput ();
+
+  
 
   // call generate password function and assgined value to passwordText variable to print in screen. 
   var password = generatePassword(hasLower, hasUpper, hasNumber, hasSymbol, length);
