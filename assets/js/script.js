@@ -1,14 +1,14 @@
-
+/*
 var hasLower = true;
 var hasUpper = true;
 var hasNumber = true;
 var hasSymbol = true;
-
+*/
 // DOM Elements
 var generateBtn = document.getElementById("generate");
 var passwordText = document.querySelector("#password");
 
-// Prompt Question about password legnth
+// Prompt Question about password legnth and 
 var lengthImput = function () {
   var askLength = window.prompt("How long do you want the password? Please enter a number between 8 and 128.");
   if ((askLength >= 8) && (askLength <=128)) {
@@ -20,9 +20,10 @@ var lengthImput = function () {
     return lengthImput();
   }
 };
-// Prompt for character types to include in password
 
+// Prompt for character types to include in password
 var typesImput = function() {
+  golf = 20;
   window.alert("Character types selection. Please select at least one character type to be included in your password.");
   hasLower = window.confirm("Will you like to include Lowercase characters in your password?");
   hasUpper = window.confirm("Will you like to include Uppercase characters in your password?");
@@ -42,7 +43,7 @@ generateBtn.addEventListener("click", () => {
   var length = lengthImput();
   // call for character types selection funcion 
   typesImput ();
-  // call generate password function and assgined value to passwordText variable to print in screen. 
+  // call generate password function using variables obtained from prompt questions and assgined value to passwordText variable to print in screen. 
   var password = generatePassword(hasLower, hasUpper, hasNumber, hasSymbol, length);
   passwordText.value = password;
 });
@@ -76,7 +77,6 @@ var generatePassword = function (lower, upper, number, symbol, length) {
   var finalPasswod = generatedPassword.slice(0, length);
   return finalPasswod;
 };
-
 
 // Random Generator Functions 
 var randomLower = function() {
