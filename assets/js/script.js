@@ -33,6 +33,7 @@ var typesImput = function() {
     window.alert("You did not select any type of character for your password. Please try again!");
     return typesImput();
   }
+  console.log("Character types selection: Lowers= " + hasLower + ", Uppers= " + hasUpper + ", Numbers= " + hasNumber + ", Symbols= " + hasSymbol);
 };
 
 // Generate event listenner
