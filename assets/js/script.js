@@ -21,7 +21,7 @@ var lengthImput = function () {
   }
 };
 
-// Prompt for character types to include in password
+// Prompts for character types to include in password
 var typesImput = function() {
   golf = 20;
   window.alert("Character types selection. Please select at least one character type to be included in your password.");
@@ -37,20 +37,20 @@ var typesImput = function() {
   console.log("Character types selection: Lowers= " + hasLower + ", Uppers= " + hasUpper + ", Numbers= " + hasNumber + ", Symbols= " + hasSymbol);
 };
 
-// Generate event listenner
+// Generate event listener
 generateBtn.addEventListener("click", () => {
-  // determine password length calling function about password length
+  // Determine password length calling function about password length
   var length = lengthImput();
-  // call for character types selection funcion 
+  // Call for character types selection funcion 
   typesImput ();
-  // call generate password function using variables obtained from prompt questions and assgined value to passwordText variable to print in screen. 
+  // Call generate password function using variables obtained from prompt questions and assgined value to passwordText variable to print in screen. 
   var password = generatePassword(hasLower, hasUpper, hasNumber, hasSymbol, length);
   passwordText.value = password;
 });
 
 // Generate Password Function
 var generatePassword = function (lower, upper, number, symbol, length) {
-  // password variable
+  // Initialize password variable
   var generatedPassword = '';
   // Filter out unselected types of characthers
   var typesCount = lower + upper + number + symbol;
