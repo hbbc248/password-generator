@@ -35,33 +35,12 @@ var typesImput = function() {
   }
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Generate event listenner
 generateBtn.addEventListener("click", () => {
   // determine password length calling function about password length
   var length = lengthImput();
-  // call 
+  // call for character types selection funcion 
   typesImput ();
-
-  
-
   // call generate password function and assgined value to passwordText variable to print in screen. 
   var password = generatePassword(hasLower, hasUpper, hasNumber, hasSymbol, length);
   passwordText.value = password;
