@@ -23,7 +23,6 @@ var lengthImput = function () {
 
 // Prompts for character types to include in password
 var typesImput = function() {
-  golf = 20;
   window.alert("Character types selection. Please select at least one character type to be included in your password.");
   hasLower = window.confirm("Will you like to include Lowercase characters in your password?");
   hasUpper = window.confirm("Will you like to include Uppercase characters in your password?");
@@ -39,52 +38,35 @@ var typesImput = function() {
 
 // Generate Password Function
 var generatePassword = function (lower, upper, number, symbol, length) {
-  // Initialize password variable
+  // Initialize password variables
   var generatedPassword = '';
-  // Filter out unselected types of characthers
-  var typesCount = lower + upper + number + symbol;
-  var typesArray = [{ lower }, { upper }, { number }, { symbol }].filter(item => Object.values(item)[0]);
-  //loop over length cal generator function for each type
-  for(var i = 0; i < length; i += typesCount) {
-    typesArray.forEach(type => {
-      var funcName = Object.keys(type)[0];
-      if (funcName === "lower") {
-      generatedPassword += randomLower();
-      }
-      if (funcName === "upper") {
-        generatedPassword += randomUpper();
-      }
-      if (funcName === "number") {
-        generatedPassword += randomNumber();
-      }
-      if (funcName === "symbol") {
-        generatedPassword += randomSymbol();
-      }   
-    });
+  var typesForPassword = '';
+  var Lowers = 'abcdefghijklmnopqrstuvwxyz';
+  var Uppers = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var Numbers = '0123456789';
+  var Symbols = '!"#$%&()*+,-./:;<=>?@[\]_{|}~';
+  // Filter out unselected types of characthers and add them to typesOfPassword
+  if (lower) {
+      typesForPassword += Lowers;
   }
+  if (upper) {
+    typesForPassword += Uppers;
+  }
+  if (number) {
+    typesForPassword += Numbers;
+    typesForPassword += Numbers; /* double adding to make sure numbers are selected for short passwords */
+  }
+  if (symbol) {
+    typesForPassword += Symbols;
+  }
+  //loop over length to generate password
+  for (var i = 0; i < length; i++) {
+    generatedPassword += typesForPassword[Math.floor(Math.random() * typesForPassword.length)]; 
+  }  
   //add final password to the password var and return
-  var finalPasswod = generatedPassword.slice(0, length);
-  return finalPasswod;
+  return generatedPassword;
 };
 
-
-// Random Generator Functions 
-var randomLower = function() {
-  var Lowers = 'abcdefghijklmnopqrstuvwxyz';
-  return Lowers[Math.floor(Math.random() * Lowers.length)];
-}
-var randomUpper = function() {
-  var Uppers = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  return Uppers[Math.floor(Math.random() * Uppers.length)];
-}
-var randomNumber = function() {
-  return Math.floor(Math.random() * 10);
-}
-var randomSymbol = function() {
-  var Symbols = '!"#$%&()*+,-./:;<=>?@[\]_{|}~';
-  return Symbols[Math.floor(Math.random() * Symbols.length)];
-  
-}
 // Generate event listener
 generateBtn.addEventListener("click", () => {
   // Determine password length calling function about password length
